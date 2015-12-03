@@ -1,0 +1,21 @@
+<div class="row">
+	<div id="busca" class="col-md-3">
+		<form class="form-horizontal">
+			<input type="text" class="form-control search" placeholder="Buscar alimentos">
+			<span class="glyphicon glyphicon glyphicon-search form-control-feedback"></span>
+		</form>
+		<script type="text/javascript">
+			$(".search").keyup(function () {
+				var search = $(this).val();
+				var re = new RegExp(search, 'i');
+				$("table tr td:nth-child(2)").each(function () {
+					if($(this).text().match(re)) {
+						$(this).parent().show();
+					} else {
+						$(this).parent().hide();
+					}
+				});
+			});
+		</script>
+	</div>
+</div>

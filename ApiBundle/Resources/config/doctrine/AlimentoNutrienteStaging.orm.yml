@@ -1,0 +1,35 @@
+TBCA\ApiBundle\Entity\AlimentoNutrienteStaging:
+    type: entity
+    table: alimento_nutriente_staging
+    indexes:
+        fk_id_nutriente_staging:
+            columns:
+                - id_nutriente
+    id:
+        idAlimento:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: id_alimento
+        idNutriente:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: id_nutriente
+    fields:
+        valor:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+        deletado:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+    lifecycleCallbacks: {  }

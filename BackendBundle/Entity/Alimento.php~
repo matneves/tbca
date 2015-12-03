@@ -1,0 +1,39 @@
+<?php
+
+namespace TBCA\BackendBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Alimento
+ *
+ * @ORM\Table(name="alimento", indexes={@ORM\Index(name="fk_id_categoria", columns={"id_categoria"})})
+ * @ORM\Entity
+ */
+class Alimento
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome", type="string", length=255, nullable=false)
+     */
+    private $nome;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_categoria", type="integer", nullable=false)
+     */
+    private $idCategoria;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}

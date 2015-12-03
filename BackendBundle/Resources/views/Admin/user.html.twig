@@ -1,0 +1,29 @@
+{% extends 'TBCABackendBundle:Admin:base.html.twig' %}
+{% block title %}{{ parent() }}Usuário{% endblock %}
+{% block header %}{{ parent() }}{% include 'TBCABackendBundle:Admin:menu.html.twig' %}{% endblock %}
+{% block content %}
+<div class="staging">
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Senha</th>
+                    <th>Nome</th>
+                    <th>Super</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ form_errors(form.email) }}{{ form_widget(form.email) }}</td>
+                    <td>{{ form_errors(form.senha) }}{{ form_widget(form.senha) }}</td>
+                    <td>{{ form_errors(form.nome) }}{{ form_widget(form.nome) }}</td>
+                    <td>{{ form_errors(form.super) }}{{ form_widget(form.super) }}</td>
+                </tr>
+            </tbody>
+        </table>
+        {{ form_widget(form.enviar) }}
+    {{ form_end(form) }}
+</div>
+{% endblock %}

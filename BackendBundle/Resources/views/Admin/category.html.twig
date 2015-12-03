@@ -1,0 +1,36 @@
+{% extends 'TBCABackendBundle:Admin:base.html.twig' %}
+{% block title %}
+	{{ parent() }}{{ categoria.nome }}
+{% endblock %}
+{% block header %}
+	{{ parent() }}{% include 'TBCABackendBundle:Admin:menu.html.twig' %}
+{% endblock %}
+{% block content %}
+	{% include 'TBCABackendBundle:Admin:search.html.twig' %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nome</th>
+				<th>Categoria</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for alimento in alimentos %}
+				<tr>
+					<td>
+						{{ alimento.id }}
+					</td>
+					<td>
+						<a href="{{ path('admin', {'page': "show/#{alimento.id}"}) }}">
+							{{ alimento.nome }}
+						</a>
+					</td>
+					<td>
+						{{ alimento.idCategoria }}
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

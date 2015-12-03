@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="TBCA\BackendBundle\Entity\AlimentoNutrienteStaging" table="alimento_nutriente_staging">
+    <indexes>
+      <index name="fk_id_atributo_staging" columns="id_nutriente"/>
+    </indexes>
+    <id name="idAlimento" type="integer" column="id_alimento"/>
+    <id name="idNutriente" type="integer" column="id_nutriente"/>
+    <field name="valor" type="string" column="valor" length="255" nullable="false"/>
+    <field name="deletado" type="integer" column="deletado" nullable="false"/>
+    <field name="editor" type="string" column="editor" length="255" nullable="false"/>
+  </entity>
+</doctrine-mapping>

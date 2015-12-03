@@ -1,0 +1,5 @@
+admin:
+    path:     /admin/{page}
+    defaults: { _controller: TBCABackendBundle:Admin:admin, page: login }
+    requirements:
+      page:  (\w|/)*

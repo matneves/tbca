@@ -1,0 +1,32 @@
+{% extends 'TBCABackendBundle:Admin:base.html.twig' %}
+{% block title %}
+	{{ parent() }}Categorias
+{% endblock %}
+{% block header %}
+	{{ parent() }}{% include 'TBCABackendBundle:Admin:menu.html.twig' %}
+{% endblock %}
+{% block content %}
+	<h2>
+		Categorias
+	</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nome</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for categoria in categorias %}
+				<tr>
+					<td>{{ categoria.id }}</td>
+					<td>
+						<a href="{{ path('admin', {'page': "categories/#{categoria.id}"}) }}">
+							{{ categoria.nome }}
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

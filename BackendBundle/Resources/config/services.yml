@@ -1,0 +1,4 @@
+services:
+#    tbca_backend.example:
+#        class: TBCA\BackendBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

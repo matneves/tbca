@@ -1,0 +1,39 @@
+{% extends 'TBCABackendBundle:Admin:base.html.twig' %}
+{% block title %}{{ parent() }}Usuários{% endblock %}
+{% block header %}{{ parent() }}{% include 'TBCABackendBundle:Admin:menu.html.twig' %}{% endblock %}
+{% block content %}
+<div class="staging">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Nome</th>
+                <th>Super</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in usuarios %}
+                <tr>
+                    <td>{{ usuario.email }}</td>
+                    <td>{{ usuario.nome }}</td>
+                    <td>
+                        {% if usuario.super %}
+                            Sim
+                        {% else %}
+                            Não
+                        {% endif %}
+                    <td>
+                        <a href="{{ path('admin', {'page': "users/#{usuario.id}"}) }}">Editar</a>
+                        /
+                        <a href="{{ path('admin', {'page': "users/remove/#{usuario.id}"}) }}">Remover</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('admin', {'page': "users/add"}) }}">
+        <button type="submit" class="btn btn-lg btn-default btn-alterar">Adicionar</button>
+    </a>
+</div>
+{% endblock %}

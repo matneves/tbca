@@ -1,0 +1,44 @@
+{% extends 'TBCABackendBundle:Admin:base.html.twig' %}
+{% block title %}
+	{{ parent() }}Página Principal
+{% endblock %}
+{% block content %}
+	{% for flash_message in app.session.flashbag.get('warning') %}
+		<div class="alert alert-warning" role="alert">
+			<i class="glyphicon glyphicon-warning-sign"></i><span>{{ flash_message }}</span>
+		</div>
+	{% endfor %}
+	<h2>
+		Alimentos
+	</h2>
+	{% include 'TBCABackendBundle:Admin:search.html.twig' %}
+	<a href="{{ path('admin', {'page': "add"}) }}">
+		<button type="submit" class="btn btn-lg btn-default btn-alterar">Adicionar</button>
+	</a>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nome</th>
+				<th>Categoria</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for alimento in alimentos %}
+				<tr>
+					<td>
+						{{ alimento.id }}
+					</td>
+					<td>
+						<a href="{{ path('admin', {'page': "show/#{alimento.id}"}) }}">
+							{{ alimento.nome }}
+						</a>
+					</td>
+					<td>
+						{{ alimento.idCategoria }}
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'TBCABackendBundle:Admin:base.html.twig' %}
+{% block title %}{{ parent() }}Acesso{% endblock %}
+{% block menu %}{% endblock %}
+{% block content %}
+    <div class="container">
+        {% for flash_message in app.session.flashbag.get('danger') %}
+            <div class="alert alert-danger" role="alert">
+                <i class="glyphicon glyphicon-remove"></i><span>{{ flash_message }}</span>
+            </div>
+        {% endfor %}
+        {% for flash_message in app.session.flashbag.get('success') %}
+            <div class="alert alert-success" role="alert">
+                <i class="glyphicon glyphicon-ok"></i><span>{{ flash_message }}</span>
+            </div>
+        {% endfor %}
+        <div class="form-signin">
+            <h1>Login</h1>
+            {{ form_start(form) }}
+                {{ form_row(form.email, {'attr': {'class':'form-control', 'placeholder':'E-mail'}}) }}
+                {{ form_row(form.senha, {'attr': {'class':'form-control', 'placeholder':'Senha'}}) }}
+                {{ form_row(form.entrar, {'attr': {'class':'btn btn-lg btn-primary btn-block'}}) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+parameters:
+    tbca_api.alimento.handler.class:  TBCA\ApiBundle\Handler\AlimentoHandler
+    tbca_api.alimento.class:  TBCA\ApiBundle\Entity\Alimento
+    tbca_api.categoria.handler.class:  TBCA\ApiBundle\Handler\CategoriaHandler
+    tbca_api.categoria.class:  TBCA\ApiBundle\Entity\Categoria
+
+services:
+    tbca_api.alimento.handler:
+        class: %tbca_api.alimento.handler.class%
+        arguments: [@doctrine.orm.entity_manager, "%tbca_api.alimento.class%"]
+
+    tbca_api.categoria.handler:
+        class: %tbca_api.categoria.handler.class%
+        arguments: [@doctrine.orm.entity_manager, "%tbca_api.categoria.class%"]

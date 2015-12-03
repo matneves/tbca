@@ -1,0 +1,65 @@
+{% extends 'TBCABackendBundle:Admin:base.html.twig' %}
+{% block title %}{{ parent() }}A Aprovar{% endblock %}
+{% block header %}{{ parent() }}{% include 'TBCABackendBundle:Admin:menu.html.twig' %}{% endblock %}
+{% block content %}
+<div class="staging">
+    {% if proposals or alimentoProposals %}
+        {% if proposals %}
+          <h1>Nutrientes</h1>
+          <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Alimento</th>
+                    <th>Nutriente</th>
+                    <th>Valor</th>
+                    <th>Unidade</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for proposal in proposals %}
+                    <tr>
+                        <td>{{ proposal.alimento }}</td>
+                        <td>{{ proposal.nutriente }}</td>
+                        <td>{{ proposal.valor }}</td>
+                        <td>{{ proposal.unidade }}</td>
+                        <td>
+                            <a href="{{ path('admin', {'page': "staging/approve/#{proposal.idAlimento}/#{proposal.idNutriente}"}) }}">Aprovar</a>
+                            /
+                            <a href="{{ path('admin', {'page': "staging/reprove/#{proposal.idAlimento}/#{proposal.idNutriente}"}) }}">Reprovar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
+        {% if alimentoProposals %}
+          <h1>Alimentos</h1>
+          <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Efeito</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for proposal in alimentoProposals %}
+                    <tr>
+                        <td>{{ proposal.nome }}</td>
+                        <td>{% if proposal.valores %}Criar{% else %}Remover{% endif %}</td>
+                        <td>
+                            <a href="{{ path('admin', {'page': "staging/approve/#{proposal.id}/"}) }}">Aprovar</a>
+                            /
+                            <a href="{{ path('admin', {'page': "staging/reprove/#{proposal.id}/"}) }}">Reprovar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
+    {% else %}
+        <h1>Não há nenhuma alteração pendente</h1>
+    {% endif %}
+</div>
+{% endblock %}

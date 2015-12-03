@@ -1,0 +1,41 @@
+# ALIMENTOS
+alimentos_all:
+    path:     /alimentos/
+    defaults: { _controller: TBCAApiBundle:Alimento:index }
+    methods:  [GET]
+
+alimentos_show:
+    path:     /alimentos/{id}/
+    defaults: { _controller: TBCAApiBundle:Alimento:show }
+    methods:  [GET]
+
+alimentos_categorias_show:
+    path:     /alimentos/{id}/{genericAttribute}/
+    defaults: { _controller: TBCAApiBundle:Alimento:showWithAttribute }
+    methods:  [GET]
+
+# tbca_api_create:
+#     path:     /alimentos/{slug}
+#     defaults: { _controller: TBCAApiBundle:Alimento:create }
+#     methods:  [POST]
+
+# tbca_api_update:
+#     path:     /alimentos/{slug}
+#     defaults: { _controller: TBCAApiBundle:Alimento:update }
+#     methods:  [PUT]
+
+# tbca_api_delete:
+#     path:     /alimentos/{slug}
+#     defaults: { _controller: TBCAApiBundle:Alimento:delete }
+#     methods:  [DELETE]
+
+# CATEGORIAS
+categorias_all:
+    path:     /categorias/
+    defaults: { _controller: TBCAApiBundle:Categoria:index }
+    methods:  [GET]
+
+categorias_show:
+    path:     /categorias/{id}/
+    defaults: { _controller: TBCAApiBundle:Categoria:show }
+    methods:  [GET]

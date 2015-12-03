@@ -1,0 +1,37 @@
+{% extends 'TBCABackendBundle:Admin:base.html.twig' %}
+{% block title %}
+	{{ parent() }}Página Principal
+{% endblock %}
+{% block header %}
+	{{ parent() }}{% include 'TBCABackendBundle:Admin:menu.html.twig' %}
+{% endblock %}
+{% block content %}
+	{% for flash_message in app.session.flashbag.get('warning') %}
+		<div class="alert alert-warning" role="alert">
+			<i class="glyphicon glyphicon-warning-sign"></i><span>{{ flash_message }}</span>
+		</div>
+	{% endfor %}
+	{% for flash_message in app.session.flashbag.get('danger') %}
+		<div class="alert alert-danger" role="alert">
+			<i class="glyphicon glyphicon-remove"></i><span>{{ flash_message }}</span>
+		</div>
+	{% endfor %}
+	<h2>{{ alimento.nome }}</h2>
+	<form action="{{ path('admin', {'page': "remove"}) }}" class="" method="post">
+		<input type="hidden" name="id" value="{{ alimento.id }}">
+		<button type="submit" class="btn btn-lg btn-default btn-alterar">Deletar</button>
+	</form>
+	<form class="" method="post">
+		<div class="itens clearfix">
+			<div class="row">
+				{% for nutriente in nutrientes %}
+					<div class="item col-md-3">
+						<h3>{{ nutriente.nome }} ({{ nutriente.unidade }})</h3>
+						<input type="text" name="{{ nutriente.nome }}" value="{{ nutriente.valor }}"></input>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+		<button type="submit" class="btn btn-lg btn-default btn-alterar">Alterar</button>
+	</form>
+{% endblock %}

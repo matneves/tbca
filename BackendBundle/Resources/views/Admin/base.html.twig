@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% block head %}
+		<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
+		<link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
+
+		<script src="{{ asset('js/jquery.min.js') }}"></script>
+
+		<title>TBCA | {% block title %}{% endblock %}</title>
+	{% endblock %}
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			{% block menu %}
+				<div id="col-nav" class="col-md-3">
+					{% include 'TBCABackendBundle:Admin:menu.html.twig' %}
+				</div>
+			{% endblock %}
+			<div id="col-main" class="col-md-9">
+				{% block content %}
+				{% endblock %}
+			</div>
+		</div>
+	</div>
+</body>
+</html>

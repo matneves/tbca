@@ -1,0 +1,55 @@
+<?php
+
+namespace TBCA\BackendBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * AlimentoNutrienteStaging
+ *
+ * @ORM\Table(name="alimento_nutriente_staging", indexes={@ORM\Index(name="fk_id_atributo_staging", columns={"id_nutriente"})})
+ * @ORM\Entity
+ */
+class AlimentoNutrienteStaging
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="valor", type="string", length=255, nullable=false)
+     */
+    private $valor;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="deletado", type="integer", nullable=false)
+     */
+    private $deletado;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="editor", type="string", length=255, nullable=false)
+     */
+    private $editor;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_alimento", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $idAlimento;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_nutriente", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $idNutriente;
+
+
+}
