@@ -67,7 +67,7 @@ class AlimentoHandler extends AbstractHandler implements HandlerInterface
 			$alimentos = $this->repository->findAll();
 
 			foreach ($alimentos as $alimento) {
-				$alimentosArray['alimentos'][] = $alimento->getDataArray();
+				$alimentosArray['alimentos'][] = array_merge($alimento->getDataArray(), $this->getNutrient($alimento->getId()));
 			}
 		} else {
 			$alimentos = $this->repository->find($id);
@@ -196,6 +196,45 @@ class AlimentoHandler extends AbstractHandler implements HandlerInterface
 	}
 
 	/**
+	 * Get nutrient of food.
+	 *
+	 * @param int $idAlimento
+	 *
+	 * @return array
+	 */
+	private function getNutrient($idAlimento){
+		$foodNutrientRepository = $this->om
+		->getRepository('TBCAApiBundle:AlimentoNutriente');
+
+		$nutrientRepository = $this->om
+		->getRepository('TBCAApiBundle:Nutriente');
+
+		$foodAttribute = $foodNutrientRepository->findBy(array('idAlimento' => $idAlimento));
+
+		$attributesIdArray = array();
+		$atrributesValueArray = array();
+		foreach ($foodAttribute as $foodAttrRel) {
+			$foodAttrRelArray = $foodAttrRel->getDataArray();
+
+			$attributesIdArray[] = $foodAttrRelArray['id_nutriente'];
+			$attributesValueArray[$foodAttrRelArray['id_nutriente']] = $foodAttrRelArray['valor'];
+		}
+
+		$attributes = $nutrientRepository->findByArray($attributesIdArray);
+		$atrributesArray = array();
+		foreach ($attributes as $attribute) {
+			$attributesArray[$attribute['nome']] = array(
+				"id" => $attribute['id'],
+				"nome" => $attribute['nome'],
+				"unidade" => $attribute['unidade'],
+				"valor" => $attributesValueArray[$attribute['id']]
+				);
+		}
+
+		return $attributesArray;
+	}
+
+	/**
 	 * Get resource by its name.
 	 *
 	 * @param string $name
@@ -207,6 +246,15 @@ class AlimentoHandler extends AbstractHandler implements HandlerInterface
 		return $this->repository->findByName($name);
 	}
 
+	/**
+	 * Get resource by nutrient.
+	 *
+	 * @param string $attrName
+	 * @param string $attrValue
+	 * @param float $margin
+	 *
+	 * @return AlimentoInterface
+	 */
 	private function getBySimilarity($attrName, $attrValue, $margin = null){
 		if($margin == null){
 			$margin = 5;
