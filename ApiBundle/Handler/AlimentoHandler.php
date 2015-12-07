@@ -77,7 +77,7 @@ class AlimentoHandler extends AbstractHandler implements HandlerInterface
 			}
 
 			// Cria o vetor
-			$alimentosArray['alimentos'] = $alimentos->getDataArray();
+			$alimentosArray['alimentos'] = array_merge($alimentos->getDataArray(), $this->getNutrient($alimentos->getId()));
 		}
 
 		$result = $this->serveFormat($alimentosArray, 'alimentos');
